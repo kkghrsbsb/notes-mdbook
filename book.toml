@@ -1,4 +1,7 @@
 [book]
 title = "Professional course notes"
 authors = ["kkghrsbsb"]
-language = "en"
+language = "zh-CN"
+
+[output.html]
+git-repository-url = "https://github.com/kkghrsbsb/notes-mdbook"
