@@ -1,4 +1,4 @@
-# SQL
+# SQL\_自整理笔记
 
 > 此文档给出考试和工程上常用的规则。
 > 工程上要用到什么要约束什么，还是问 ai 查文档。
@@ -52,6 +52,49 @@ create table <表名>（
     );
 ```
 
+<table>
+<tr>
+<td>**数据类型**<br/></td><td>**描述**<br/></td></tr>
+<tr>
+<td>char(n), character(n)<br/></td><td>字符/字符串。固定长度 n。<br/></td></tr>
+<tr>
+<td>varchar(n),<br/>character varying(n)<br/></td><td>字符/字符串。可变长度。最大长度 n。<br/></td></tr>
+<tr>
+<td>int(p), integer(p)<br/></td><td>整数值（没有小数点）。精度 p。<br/></td></tr>
+<tr>
+<td>smallint<br/></td><td>整数值（没有小数点）。精度 5。<br/></td></tr>
+<tr>
+<td>int, integer<br/></td><td>整数值（没有小数点）。精度 10。<br/></td></tr>
+<tr>
+<td>bigint<br/></td><td>整数值（没有小数点）。精度 19。<br/></td></tr>
+<tr>
+<td>decimal(p,s)<br/></td><td>精确数值，精度 p，小数点后位数 s。例如：decimal(5,2) 是一个小数点前有 3 位数，小数点后有 2 位数的数字。<br/></td></tr>
+<tr>
+<td>numeric(p,s)<br/></td><td>精确数值，精度 p，小数点后位数 s。（与 DECIMAL 相同）<br/></td></tr>
+<tr>
+<td>float(p)<br/></td><td>近似数值，尾数精度 p。一个采用以 10 为基数的指数计数法的浮点数。该类型的 size 参数由一个指定最小精度的单一数字组成。<br/></td></tr>
+<tr>
+<td>real<br/></td><td>近似数值，尾数精度 7。<br/></td></tr>
+<tr>
+<td>float<br/></td><td>近似数值，尾数精度 16。<br/></td></tr>
+<tr>
+<td>double precision<br/></td><td>近似数值，尾数精度 16。<br/></td></tr>
+<tr>
+<td>date<br/></td><td>日期。存储年、月、日的值。<br/></td></tr>
+<tr>
+<td>time<br/></td><td>时间。存储小时、分、秒的值。<br/></td></tr>
+<tr>
+<td>timestamp<br/></td><td>时间戳类型。存储年、月、日、小时、分、秒的值。<br/></td></tr>
+<tr>
+<td>interval<br/></td><td>时间间隔类型。由一些整数字段组成，代表一段时间，取决于区间的类型。<br/></td></tr>
+<tr>
+<td>array<br/></td><td>元素的固定长度的有序集合<br/></td></tr>
+<tr>
+<td>multiset<br/></td><td>元素的可变长度的无序集合<br/></td></tr>
+<tr>
+<td>xml<br/></td><td>存储 XML 数据<br/></td></tr>
+</table>
+
 **[列级完整性约束]**
 
 `primary key`， 列指定主键约束
@@ -100,8 +143,35 @@ create table <表名>（
 `drop table <表名> [restrict|cascade] `
 
 > 默认选项是 restrict，存在依赖该表的对象，此表不能被删除
-> 选择 cascade，则删除该表没有限制条件。相关的依赖对象都可能被一起删除
-> *每个数据库产品，`drop` 策略有差别
+> 选择 cascade，则删除该表没有限制条件。相关的依赖对象都可能被一起删除 \*每个数据库产品，`drop` 策略有差别
+
+# 对表中字段的增/删/改（修改表）
+
+```sql
+alter table <表名>
+    [add[column]]<新列名><数据类型>[完整性约束] -- 加列
+    [add<表级完整性约束>]                      -- 加约束
+    [drop[column]<列名>[cascade|restrict]]    -- 删列
+    [rename column <列名> to <新列名>]        -- 重命名列
+    [alter column <列名> type <数据类型>];    -- 该列类型
+```
+
+书例题 p76
+
+# 索引
+
+表的索引属于内模式范畴
+
+```sql
+create[unique][cluster] index <>
+on <表名>(<列名>[<次序>][,<列名>[<次序>]]...);
+
+-- unique 表明此索引的每一个索引值只对应唯一的数据记录
+-- cluster 要建立的索引是聚集索引（就是加快查询速度）
+-- 列名后的次序 可选 ASC(升序)/DESC(降序)
+```
+
+书例题 p79
 
 # 表的查询
 
@@ -112,13 +182,30 @@ create table <表名>（
 -- 完整写应该是[as <别名>]，as只是个可读性标记，可以省略
 select [all|distinct] <目标列表达式> [别名], ... /*相当于投影*/
 /* all —— 不去重  distinct —— 去重*/
-from <表名或视图名> [别名], ... 
+from <表名或视图名> [别名], ...
 [where <条件表达式>] /*相当于选择*/
 [group by <列名> [having <条件表达式>]] /*having作用于组，where作用于表*/
 /*asc —— 升序  desc —— 降序*/
 [order by <列名> [asc|desc]]
 [limit <行数1> [offset <行数2>]]
 ```
+
+<table>
+<tr>
+<td>**查询条件**<br/></td><td>**谓词**<br/></td></tr>
+<tr>
+<td>比较<br/></td><td>=， >, <, >=, <=, <>, !>, !<; not+上述比较运算符<br/></td></tr>
+<tr>
+<td>确定范围<br/></td><td>between and, not between and <br/></td></tr>
+<tr>
+<td>确定集合<br/></td><td>in, not in <元组/子查询><br/></td></tr>
+<tr>
+<td>字符匹配<br/></td><td>like, not like <含通配符的字符串（%任意长度，_任意单个字符）><br/></td></tr>
+<tr>
+<td>空值<br/></td><td>is null, is not null<br/></td></tr>
+<tr>
+<td>多重条件（逻辑运算）<br/></td><td>and, or, not<br/></td></tr>
+</table>
 
 <table>
 <tr>
@@ -143,7 +230,7 @@ from <表名或视图名> [别名], ...
 
 ## 连接查询
 
-理论是关系代数的连接 (等值连接，非等值连接，自然连接，（左/右）外连接  * 见教材 p50)
+理论是关系代数的连接 (等值连接，非等值连接，自然连接，（左/右）外连接 \* 见教材 p50)
 
 `from` 多个表，where 子句里写条件（示例见教材 p92）
 
@@ -249,10 +336,77 @@ FROM (
 WHERE t.cnt > 5;
 ```
 
-# 对表中字段的增/删/改（修改表）
+# 对数据（元组）的增/删/改（数据更新）
 
-# 对数据（元组）的增/删/改
+书例题 p108
 
-# 空值的处理
+## 插入数据
+
+1. 插入一个元组
+
+```sql
+insert into <表名>[(属性列 1[,<属性列 2>]...)] -- 对应常量
+values (<常量 1>[,<常量 2>]...);
+```
+
+1. 插入子查询结果
+
+```sql
+insert into <表名>[(<属性列 1>[,<属性列 2>...])]
+子查询;
+```
+
+## 修改数据
+
+```sql
+update <表名>
+set <列名>=<表达式>[,<列名>=<表达式>]...
+[where<条件>];
+```
+
+## 删除数据
+
+```sql
+delete from <表名>
+[where <条件>];
+```
 
 # 视图
+
+书例题 p114
+
+## 定义视图
+
+1. 建立视图
+
+```sql
+-- 将子查询的结果作为视图
+create view <视图名>[(<列名>[,<列名>]...)]
+as <子查询>
+[with check option];
+-- 该选项表示对视图进行 UPDATE、INSERT 和 DELETE 操作时
+-- 要操作的元组满足视图定义中的谓词条件（即子查询中的条件表达式）
+```
+
+1. 删除视图
+
+`drop view <视图名>[cascade];`
+
+> cascade 级联表示把该视图和由它导出的所有视图一起删除
+
+## 查询视图
+
+DBMS 检查有效性，将视图查询转换成等价的对基本表的查询，然后再执行修正了的查询。这一转换过程称为*视图消解(view resolution)。*
+
+具体看例题
+
+## 更新视图
+
+是指通过视图来插入、删除和修改数据，同样*视图消解*，最终是对基本表的更新操作。
+
+## 视图的作用
+
+1. 视图能够对机密数据提供安全保护
+2. 视图对重构数据库提供了一定程度的逻辑独立性
+3. 视图能简化用户的操作
+4. 视图使用户能以多种角度看待同一个数据

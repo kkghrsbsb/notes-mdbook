@@ -26,7 +26,7 @@
 > 具体看pdf
 
 # 五、练习题
-![alt text](./img/image.png)
+![alt text](./img_大物B习题/image.png)
 &nbsp;
 
 &nbsp;
@@ -35,9 +35,9 @@
 
 &nbsp;
 
-![alt text](./img/image-1.png)
+![alt text](./img_大物B习题/image-1.png)
 
-![alt text](./img/image-2.png)
+![alt text](./img_大物B习题/image-2.png)
 &nbsp;
 
 &nbsp;
@@ -46,7 +46,7 @@
 
 &nbsp;
 
-![alt text](./img/image-3.png)
+![alt text](./img_大物B习题/image-3.png)
 &nbsp;
 
 &nbsp;
@@ -55,7 +55,7 @@
 
 &nbsp;
 
-![alt text](./img/image-4.png)
+![alt text](./img_大物B习题/image-4.png)
 &nbsp;
 
 &nbsp;
@@ -64,4 +64,4 @@
 
 &nbsp;
 
-![alt text](./img/image-5.png)
+![alt text](./img_大物B习题/image-5.png)
