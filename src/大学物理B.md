@@ -27,8 +27,41 @@
 
 # 五、练习题
 ![alt text](./img/image.png)
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
 ![alt text](./img/image-1.png)
+
 ![alt text](./img/image-2.png)
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
 ![alt text](./img/image-3.png)
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
 ![alt text](./img/image-4.png)
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
 ![alt text](./img/image-5.png)
