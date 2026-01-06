@@ -54,7 +54,7 @@ create table <表名>（
 
 <table>
 <tr>
-<td>**数据类型**<br/></td><td>**描述**<br/></td></tr>
+<td>数据类型<br/></td><td>描述<br/></td></tr>
 <tr>
 <td>char(n), character(n)<br/></td><td>字符/字符串。固定长度 n。<br/></td></tr>
 <tr>
@@ -192,7 +192,7 @@ from <表名或视图名> [别名], ...
 
 <table>
 <tr>
-<td>**查询条件**<br/></td><td>**谓词**<br/></td></tr>
+<td>查询条件<br/></td><td>谓词<br/></td></tr>
 <tr>
 <td>比较<br/></td><td>=， >, <, >=, <=, <>, !>, !<; not+上述比较运算符<br/></td></tr>
 <tr>
