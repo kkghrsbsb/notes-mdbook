@@ -9,4 +9,4 @@ github pages（更新即时）
 [kkghrsbsb.com/notes-mdbook](https://kkghrsbsb.com/notes-mdbook)
 
 页面右上角引导github仓库，有问题请发 issues \
-@kkghrsbsb (Xinger Yao)
+[@kkghrsbsb (Xinger Yao)](https://github.com/kkghrsbsb)

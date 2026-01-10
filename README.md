@@ -8,5 +8,4 @@ github pages（更新即时）
 个人域名下（已发布，更新不太即时）
 [kkghrsbsb.com/notes-mdbook](https://kkghrsbsb.com/notes-mdbook)
 
-页面右上角引导github仓库，有问题请发 issues \
-@kkghrsbsb (Xinger Yao)
+页面右上角引导github仓库，有问题请发 issues 
